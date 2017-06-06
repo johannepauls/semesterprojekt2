@@ -18,4 +18,4 @@ public class SemesterProjekt2EKG {
         // TODO code application logic here
     }
     
-}
+}//Hej
