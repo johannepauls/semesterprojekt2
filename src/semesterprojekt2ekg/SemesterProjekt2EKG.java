@@ -19,3 +19,4 @@ public class SemesterProjekt2EKG {
     }
     
 }//Hej
+//HejHej
