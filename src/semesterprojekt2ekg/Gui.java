@@ -21,41 +21,112 @@ public class Gui extends javax.swing.JPanel {
 
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
+        statiskEkgButton = new javax.swing.JButton();
+        bpmtxt = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
-        startButton.setText("Start Måling");
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(255, 255, 255));
+
+        startButton.setBackground(new java.awt.Color(153, 153, 153));
+        startButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        startButton.setForeground(new java.awt.Color(255, 255, 255));
+        startButton.setText("Påbegynd undersøgelse");
+        startButton.setActionCommand("start");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startButtonActionPerformed(evt);
             }
         });
 
-        stopButton.setText("Stop Måling");
+        stopButton.setBackground(new java.awt.Color(153, 153, 153));
+        stopButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        stopButton.setForeground(new java.awt.Color(255, 255, 255));
+        stopButton.setActionCommand("stop");
+        stopButton.setLabel("Afslut undersøgelse");
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButtonActionPerformed(evt);
+            }
+        });
+
+        statiskEkgButton.setBackground(new java.awt.Color(153, 153, 153));
+        statiskEkgButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        statiskEkgButton.setForeground(new java.awt.Color(255, 255, 255));
+        statiskEkgButton.setText("Tidligere EKG");
+        statiskEkgButton.setActionCommand("statisk");
+        statiskEkgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statiskEkgButtonActionPerformed(evt);
+            }
+        });
+
+        bpmtxt.setEditable(false);
+        bpmtxt.setBackground(new java.awt.Color(0, 0, 0));
+        bpmtxt.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        bpmtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpmtxtActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("BPM");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stopButton)
-                    .addComponent(startButton))
-                .addContainerGap(426, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(bpmtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 372, Short.MAX_VALUE)
+                .addComponent(statiskEkgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(stopButton, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(startButton)
-                .addGap(60, 60, 60)
-                .addComponent(stopButton)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(492, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(stopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statiskEkgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bpmtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_startButtonActionPerformed
+
+    private void statiskEkgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statiskEkgButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statiskEkgButtonActionPerformed
+
+    private void bpmtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpmtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bpmtxtActionPerformed
+
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stopButtonActionPerformed
 
     public void setPuls(){
         //ændre puls på GUI
@@ -68,7 +139,10 @@ public class Gui extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bpmtxt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton startButton;
+    private javax.swing.JButton statiskEkgButton;
     private javax.swing.JButton stopButton;
     // End of variables declaration//GEN-END:variables
 }
