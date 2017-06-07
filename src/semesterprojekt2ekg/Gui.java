@@ -5,6 +5,7 @@ import java.awt.*;
 import static java.awt.Color.*;
 
 
+
 public class Gui extends javax.swing.JPanel {
 
     /**
@@ -28,11 +29,12 @@ public class Gui extends javax.swing.JPanel {
         statiskEkgButton = new javax.swing.JButton();
         bpmtxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(255, 255, 255));
 
-        startButton.setBackground(new java.awt.Color(153, 153, 153));
+        startButton.setBackground(new java.awt.Color(102, 102, 102));
         startButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         startButton.setForeground(new java.awt.Color(255, 255, 255));
         startButton.setText("Påbegynd undersøgelse");
@@ -43,7 +45,7 @@ public class Gui extends javax.swing.JPanel {
             }
         });
 
-        stopButton.setBackground(new java.awt.Color(153, 153, 153));
+        stopButton.setBackground(new java.awt.Color(102, 102, 102));
         stopButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         stopButton.setForeground(new java.awt.Color(255, 255, 255));
         stopButton.setActionCommand("stop");
@@ -54,7 +56,7 @@ public class Gui extends javax.swing.JPanel {
             }
         });
 
-        statiskEkgButton.setBackground(new java.awt.Color(153, 153, 153));
+        statiskEkgButton.setBackground(new java.awt.Color(102, 102, 102));
         statiskEkgButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         statiskEkgButton.setForeground(new java.awt.Color(255, 255, 255));
         statiskEkgButton.setText("Tidligere EKG");
@@ -79,16 +81,20 @@ public class Gui extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BPM");
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/semesterprojekt2ekg/heartecg.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(54, 54, 54)
                 .addComponent(bpmtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 372, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(92, 92, 92)
                 .addComponent(statiskEkgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(153, 153, 153)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -99,20 +105,23 @@ public class Gui extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(543, Short.MAX_VALUE)
+                .addContainerGap(551, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(stopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(statiskEkgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(bpmtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(stopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(statiskEkgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(46, 46, 46))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,6 +154,7 @@ public class Gui extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bpmtxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton startButton;
     private javax.swing.JButton statiskEkgButton;
     private javax.swing.JButton stopButton;
@@ -167,12 +177,12 @@ public class Gui extends javax.swing.JPanel {
         
         //Lyst rektangel
         g.setColor(darkGray); 
-        g.drawRect(35, 65, 1230, 340);
+        g.drawRect(55, 65, 1230, 340);
         
         g.setColor(lightGray); 
         int yo1 = 65;
         int yo2 = 75;
-        int xos = 123+35;
+        int xos = 123+55;
         int xod = 123;
         
         
@@ -203,24 +213,25 @@ public class Gui extends javax.swing.JPanel {
         g.drawLine(xos +(7*xod), yn1, xos +(7*xod), yn2);
         g.drawLine(xos +(8*xod), yn1, xos +(8*xod), yn2);
         
-        int xl1 = 35;
-        int xl2 = 45;
-        
-        //Korte mørke streger venstre.
-        g.drawLine(xl1, 99, xl2, 99);
-        g.drawLine(xl1, 133, xl2, 133);
-        g.drawLine(xl1, 167, xl2, 167);
-        g.drawLine(xl1, 201, xl2, 201);
-        g.drawLine(xl1, 235, xl2, 235);
-        g.drawLine(xl1, 269, xl2, 269);
-        g.drawLine(xl1, 303, xl2, 303);
-        g.drawLine(xl1, 337, xl2, 337);
-        g.drawLine(xl1, 371, xl2, 371);
-        
-        int xr1 = 1255;
-        int xr2 = 1265;
+        int xl1 = 55;
+        int xl2 = 65;
         int xrs = 99;
         int xrd = 34;
+        
+        //Korte mørke streger venstre.
+        g.drawLine(xl1, xrs +(0*xrd), xl2, xrs +(0*xrd));
+        g.drawLine(xl1, xrs +(1*xrd), xl2, xrs +(1*xrd));
+        g.drawLine(xl1, xrs +(2*xrd), xl2, xrs +(2*xrd));
+        g.drawLine(xl1, xrs +(3*xrd), xl2, xrs +(3*xrd));
+        g.drawLine(xl1, xrs +(4*xrd), xl2, xrs +(4*xrd));
+        g.drawLine(xl1, xrs +(5*xrd), xl2, xrs +(5*xrd));
+        g.drawLine(xl1, xrs +(6*xrd), xl2, xrs +(6*xrd));
+        g.drawLine(xl1, xrs +(7*xrd), xl2, xrs +(7*xrd));
+        g.drawLine(xl1, xrs +(8*xrd), xl2, xrs +(8*xrd));
+        
+        int xr1 = 1275;
+        int xr2 = 1285;
+        
         
         //Korte mørke streger højre.
         g.drawLine(xr1, xrs +(0*xrd), xr2, xrs +(0*xrd));
@@ -233,8 +244,8 @@ public class Gui extends javax.swing.JPanel {
         g.drawLine(xr1, xrs +(7*xrd), xr2, xrs +(7*xrd));
         g.drawLine(xr1, xrs +(8*xrd), xr2, xrs +(8*xrd));
         
-        int xh1 = 45;
-        int xh2 = 1254;
+        int xh1 = 66;
+        int xh2 = 1274;
         
         g.setColor(darkGray); 
 
@@ -262,5 +273,8 @@ public class Gui extends javax.swing.JPanel {
         g.drawLine(xos +(6*xod), xv1, xos +(6*xod), xv2);
         g.drawLine(xos +(7*xod), xv1, xos +(7*xod), xv2);
         g.drawLine(xos +(8*xod), xv1, xos +(8*xod), xv2);
+        
+        
+        
  }
 }
