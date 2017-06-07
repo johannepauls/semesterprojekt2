@@ -1,6 +1,10 @@
 package semesterprojekt2ekg;
 
 
+import java.awt.*;
+import static java.awt.Color.*;
+
+
 public class Gui extends javax.swing.JPanel {
 
     /**
@@ -95,7 +99,7 @@ public class Gui extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(492, Short.MAX_VALUE)
+                .addContainerGap(543, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,4 +149,17 @@ public class Gui extends javax.swing.JPanel {
     private javax.swing.JButton statiskEkgButton;
     private javax.swing.JButton stopButton;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+ protected void paintComponent (Graphics g){
+  super.paintComponent(g);
+  
+  //Hvidt fyldt rektangel
+        g.setColor(white); 
+        
+        // Vandret hvid linje.
+        g.fillRect(0, 515, 1320, 2);
+        // Lodret hvid linje.
+        g.fillRect(650, 515, 2, 240);
+ }
 }
