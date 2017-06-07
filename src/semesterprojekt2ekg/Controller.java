@@ -17,7 +17,7 @@ public class Controller {
         // Vindue er maksimeret når programmet køres.
         ramme.setExtendedState(JFrame.MAXIMIZED_BOTH);
         // Brugeren får ikke mulighed for at ændre på vinduets størrelse
-        ramme.setResizable(true);
+        ramme.setResizable(false);
         // Gør at vinduet fylder mindst muligt
         ramme.pack();
         // Visning af rammen med hovedklassen inden i
