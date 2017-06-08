@@ -35,8 +35,8 @@ public class Sensor {
             int index = Integer.parseInt(scan.nextLine());
             
             String input = portNames[index-1];
-            inputsub = input.substring(1, input.length()-1);
-            port = inputsub;
+            //inputsub = input.substring(1, input.length()-1);
+            port = input;
         }
         
         
