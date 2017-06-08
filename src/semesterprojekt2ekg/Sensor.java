@@ -11,14 +11,35 @@ public class Sensor {
     SerialPort serialPort ;
     int[] intarray;
     String port;
+    String inputsub;
     
     
     Sensor() {
+        int p = 1;
         // Finder serielport.
         String[] portNames = SerialPortList.getPortNames();
+        
+        if(portNames.length == 1){
         String input = Arrays.toString(portNames);
-        String inputsub = input.substring(1, input.length()-1);
+        inputsub = input.substring(1, input.length()-1);
         port = inputsub;
+        }else if(portNames.length > 1){
+            System.out.println("Du har flere serielle porte. Der vises herunder:");
+          for (String portName : portNames) {
+            System.out.println(p + ": " + portName);
+            p++;
+        } 
+            System.out.println("Vælg nu den serielle port du ønsker at anvende.");
+            System.out.println("Dette gøres ved at indtaste indexnummeret for porten efterfulgt af Enter.");
+            Scanner scan = new Scanner(System.in);
+            int index = Integer.parseInt(scan.nextLine());
+            
+            String input = portNames[index-1];
+            inputsub = input.substring(1, input.length()-1);
+            port = inputsub;
+        }
+        
+        
         
         //vi åbner porten hvorfra vi skal få vores data:
         serialPort = new SerialPort(port);
