@@ -3,6 +3,8 @@ package semesterprojekt2ekg;
 import java.util.Arrays;
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import java.util.Scanner;
+import jssc.SerialPortList;
 
 public class Sensor {
     String rest = "";
@@ -12,8 +14,12 @@ public class Sensor {
     
     
     Sensor() {
-       
-        port = "COM3";
+        // Finder serielport.
+        String[] portNames = SerialPortList.getPortNames();
+        String input = Arrays.toString(portNames);
+        String inputsub = input.substring(1, input.length()-1);
+        port = inputsub;
+        
         //vi åbner porten hvorfra vi skal få vores data:
         serialPort = new SerialPort(port);
         try {
@@ -27,6 +33,7 @@ public class Sensor {
     }
     
     
+    
     public void setData(){
         //hent data fra arduino
 
@@ -36,6 +43,8 @@ public class Sensor {
     
     
     public int[] getData(){
+       
+        
         //return type ændres til hvad end vi gemmer data som 
 
         try {
