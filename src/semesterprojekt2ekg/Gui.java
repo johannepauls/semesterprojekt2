@@ -201,13 +201,13 @@ public class Gui extends javax.swing.JPanel {
   super.paintComponent(g);
   
 
-  /*// Ruminddeling
+  // Ruminddeling
         g.setColor(white); 
         
         // Vandret hvid linje.
-        g.fillRect(0, 515, 1320, 2);
+        g.fillRect(0, 484, 1350, 2);
         // Lodret hvid linje.
-        g.fillRect(650, 515, 2, 240);*/
+        g.fillRect(627, 515, 2, 240);
         
   // Grid  
         
