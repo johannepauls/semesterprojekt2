@@ -1,11 +1,14 @@
 package semesterprojekt2ekg;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class Controller {
     //opret objekter
+
     
     public static void main(String[] args) {
+        //final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         // JFrame objekt oprettes.
         JFrame ramme = new JFrame();
         // JFrame objekt tilføjer Gui.
@@ -16,6 +19,8 @@ public class Controller {
         ramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Vindue er maksimeret når programmet køres.
         ramme.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //ramme.setSize(screenSize);
+        //ramme.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         // Brugeren får ikke mulighed for at ændre på vinduets størrelse
         ramme.setResizable(true);
         // Gør at vinduet fylder mindst muligt
