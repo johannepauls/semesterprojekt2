@@ -8,6 +8,13 @@ public class Controller {
 
     
     public static void main(String[] args) {
+       
+        Sensor kom = new Sensor();
+        
+        
+        
+    
+       
         //final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         // JFrame objekt oprettes.
         JFrame ramme = new JFrame();
@@ -27,6 +34,10 @@ public class Controller {
         ramme.pack();
         // Visning af rammen med hovedklassen inden i
         ramme.setVisible(true);
-    }
+
     
+        
+        kom.getData();
+    }
+
 }
