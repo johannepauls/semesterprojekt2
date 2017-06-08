@@ -2,6 +2,7 @@ package semesterprojekt2ekg;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class Controller {
     //opret objekter
@@ -10,9 +11,13 @@ public class Controller {
     public static void main(String[] args) {
        
         Sensor kom = new Sensor();
+        DataBehandler data = new DataBehandler();
         
         
         
+        kom.setData();
+        data.setData(kom.getData());
+        data.dataSamler();
     
        
         //final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,7 +42,8 @@ public class Controller {
 
     
         
-        kom.getData();
+        
+        
     }
 
 }

@@ -7,12 +7,19 @@ import java.util.Scanner;
 import jssc.SerialPortList;
 
 public class Sensor {
-    String rest = "";
-    SerialPort serialPort ;
-    int[] intarray;
-    String port;
-    String inputsub;
+    private String rest = "";
+    private SerialPort serialPort ;
+    private int[] intarray;
+    private String port;
+    private String inputsub;
+    private boolean conn;
     
+    /*
+    Konstruktøren Sensor() undersøger om der er en serial port tilsluttet.
+    Undersøger hvor mange porte, der er tilsluttet. Hvis der er mere end en 
+    tilsluttet, gives der en mulighed for at vælge. Til sidst åbnes forbindelsen
+    til porten.
+    */
     
     Sensor() {
         int p = 1;
@@ -43,6 +50,8 @@ public class Sensor {
         
         //vi åbner porten hvorfra vi skal få vores data:
         serialPort = new SerialPort(port);
+        conn = true;
+        
         try {
             serialPort.openPort();//Open serial port
             serialPort.setParams(9600, 8, 1, 0);//Set params.
@@ -52,19 +61,11 @@ public class Sensor {
             System.out.println("Ingen sensor tilsluttet");
         }
     }
-    
-    
-    
-    public void setData(){
-        //hent data fra arduino
-
-       
-    }
         
     
     
-    public int[] getData(){
-       
+    public void setData() throws InterruptedException{
+        while(conn == true){
         
         //return type ændres til hvad end vi gemmer data som 
 
@@ -117,7 +118,7 @@ public class Sensor {
                 
                 for (int i = 0; i < deltrettet.length; i++) {
 
-                    intarray[i] = Integer.parseInt(deltrettet[i]);
+                    intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
                     
                 }
                 System.out.println("1  : " + Arrays.toString(intarray));
@@ -130,9 +131,14 @@ public class Sensor {
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
-        
-        return intarray;
+        Thread.sleep(100);
+        }
     }
     
+    public int[] getData(){
+        //hent data fra arduino
+    return intarray;
+       
+    }
     
 }
