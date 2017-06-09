@@ -53,7 +53,7 @@
                       <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="startButton" max="32767" attributes="0"/>
-                          <Component id="stopButton" pref="205" max="32767" attributes="0"/>
+                          <Component id="stopButton" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
