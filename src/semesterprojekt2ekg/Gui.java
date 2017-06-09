@@ -1,10 +1,7 @@
 package semesterprojekt2ekg;
 
-
 import java.awt.*;
 import static java.awt.Color.*;
-
-
 
 public class Gui extends javax.swing.JPanel {
 
@@ -173,14 +170,13 @@ public class Gui extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_stopButtonActionPerformed
 
-    public void setPuls(){
+    public void setPuls() {
         //ændre puls på GUI
     }
-    
-    public void getInterval(){
+
+    public void getInterval() {
         //læser interval brugeren ønsker at tegne statisk graf over
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -197,120 +193,112 @@ public class Gui extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     @Override
- protected void paintComponent (Graphics g){
-  super.paintComponent(g);
-  
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-  // Ruminddeling
-        g.setColor(white); 
-        
+        // Ruminddeling
+        g.setColor(white);
+
         // Vandret hvid linje.
         g.fillRect(0, 484, 1350, 2);
         // Lodret hvid linje.
         g.fillRect(627, 515, 2, 240);
-        
-  // Grid  
-        
+
+        // Grid  
         //Lyst rektangel
-        g.setColor(darkGray); 
+        g.setColor(darkGray);
         g.drawRect(55, 65, 1230, 340);
-        
-        g.setColor(lightGray); 
+
+        g.setColor(lightGray);
         int yo1 = 65;
         int yo2 = 75;
-        int xos = 123+55;
+        int xos = 123 + 55;
         int xod = 123;
-        
-        
-        
+
         //Korte mørke streger oppe.
-        g.drawLine(xos +(0*xod), yo1, xos +(0*xod), yo2);
-        g.drawLine(xos +(1*xod), yo1, xos +(1*xod), yo2);
-        g.drawLine(xos +(2*xod), yo1, xos +(2*xod), yo2);
-        g.drawLine(xos +(3*xod), yo1, xos +(3*xod), yo2);
-        g.drawLine(xos +(4*xod), yo1, xos +(4*xod), yo2);
-        g.drawLine(xos +(5*xod), yo1, xos +(5*xod), yo2);
-        g.drawLine(xos +(6*xod), yo1, xos +(6*xod), yo2);
-        g.drawLine(xos +(7*xod), yo1, xos +(7*xod), yo2);
-        g.drawLine(xos +(8*xod), yo1, xos +(8*xod), yo2);
-        
+        g.drawLine(xos + (0 * xod), yo1, xos + (0 * xod), yo2);
+        g.drawLine(xos + (1 * xod), yo1, xos + (1 * xod), yo2);
+        g.drawLine(xos + (2 * xod), yo1, xos + (2 * xod), yo2);
+        g.drawLine(xos + (3 * xod), yo1, xos + (3 * xod), yo2);
+        g.drawLine(xos + (4 * xod), yo1, xos + (4 * xod), yo2);
+        g.drawLine(xos + (5 * xod), yo1, xos + (5 * xod), yo2);
+        g.drawLine(xos + (6 * xod), yo1, xos + (6 * xod), yo2);
+        g.drawLine(xos + (7 * xod), yo1, xos + (7 * xod), yo2);
+        g.drawLine(xos + (8 * xod), yo1, xos + (8 * xod), yo2);
+
         int yn1 = 395;
         int yn2 = 405;
-        
-        
+
         //Korte mørke streger nede.
-        g.drawLine(xos +(0*xod), yn1, xos +(0*xod), yn2);
-        g.drawLine(xos +(1*xod), yn1, xos +(1*xod), yn2);
-        g.drawLine(xos +(2*xod), yn1, xos +(2*xod), yn2);
-        g.drawLine(xos +(3*xod), yn1, xos +(3*xod), yn2);
-        g.drawLine(xos +(4*xod), yn1, xos +(4*xod), yn2);
-        g.drawLine(xos +(5*xod), yn1, xos +(5*xod), yn2);
-        g.drawLine(xos +(6*xod), yn1, xos +(6*xod), yn2);
-        g.drawLine(xos +(7*xod), yn1, xos +(7*xod), yn2);
-        g.drawLine(xos +(8*xod), yn1, xos +(8*xod), yn2);
-        
+        g.drawLine(xos + (0 * xod), yn1, xos + (0 * xod), yn2);
+        g.drawLine(xos + (1 * xod), yn1, xos + (1 * xod), yn2);
+        g.drawLine(xos + (2 * xod), yn1, xos + (2 * xod), yn2);
+        g.drawLine(xos + (3 * xod), yn1, xos + (3 * xod), yn2);
+        g.drawLine(xos + (4 * xod), yn1, xos + (4 * xod), yn2);
+        g.drawLine(xos + (5 * xod), yn1, xos + (5 * xod), yn2);
+        g.drawLine(xos + (6 * xod), yn1, xos + (6 * xod), yn2);
+        g.drawLine(xos + (7 * xod), yn1, xos + (7 * xod), yn2);
+        g.drawLine(xos + (8 * xod), yn1, xos + (8 * xod), yn2);
+
         int xl1 = 55;
         int xl2 = 65;
         int xrs = 99;
         int xrd = 34;
-        
+
         //Korte mørke streger venstre.
-        g.drawLine(xl1, xrs +(0*xrd), xl2, xrs +(0*xrd));
-        g.drawLine(xl1, xrs +(1*xrd), xl2, xrs +(1*xrd));
-        g.drawLine(xl1, xrs +(2*xrd), xl2, xrs +(2*xrd));
-        g.drawLine(xl1, xrs +(3*xrd), xl2, xrs +(3*xrd));
-        g.drawLine(xl1, xrs +(4*xrd), xl2, xrs +(4*xrd));
-        g.drawLine(xl1, xrs +(5*xrd), xl2, xrs +(5*xrd));
-        g.drawLine(xl1, xrs +(6*xrd), xl2, xrs +(6*xrd));
-        g.drawLine(xl1, xrs +(7*xrd), xl2, xrs +(7*xrd));
-        g.drawLine(xl1, xrs +(8*xrd), xl2, xrs +(8*xrd));
-        
+        g.drawLine(xl1, xrs + (0 * xrd), xl2, xrs + (0 * xrd));
+        g.drawLine(xl1, xrs + (1 * xrd), xl2, xrs + (1 * xrd));
+        g.drawLine(xl1, xrs + (2 * xrd), xl2, xrs + (2 * xrd));
+        g.drawLine(xl1, xrs + (3 * xrd), xl2, xrs + (3 * xrd));
+        g.drawLine(xl1, xrs + (4 * xrd), xl2, xrs + (4 * xrd));
+        g.drawLine(xl1, xrs + (5 * xrd), xl2, xrs + (5 * xrd));
+        g.drawLine(xl1, xrs + (6 * xrd), xl2, xrs + (6 * xrd));
+        g.drawLine(xl1, xrs + (7 * xrd), xl2, xrs + (7 * xrd));
+        g.drawLine(xl1, xrs + (8 * xrd), xl2, xrs + (8 * xrd));
+
         int xr1 = 1275;
         int xr2 = 1285;
-        
-        
+
         //Korte mørke streger højre.
-        g.drawLine(xr1, xrs +(0*xrd), xr2, xrs +(0*xrd));
-        g.drawLine(xr1, xrs +(1*xrd), xr2, xrs +(1*xrd));
-        g.drawLine(xr1, xrs +(2*xrd), xr2, xrs +(2*xrd));
-        g.drawLine(xr1, xrs +(3*xrd), xr2, xrs +(3*xrd));
-        g.drawLine(xr1, xrs +(4*xrd), xr2, xrs +(4*xrd));
-        g.drawLine(xr1, xrs +(5*xrd), xr2, xrs +(5*xrd));
-        g.drawLine(xr1, xrs +(6*xrd), xr2, xrs +(6*xrd));
-        g.drawLine(xr1, xrs +(7*xrd), xr2, xrs +(7*xrd));
-        g.drawLine(xr1, xrs +(8*xrd), xr2, xrs +(8*xrd));
-        
+        g.drawLine(xr1, xrs + (0 * xrd), xr2, xrs + (0 * xrd));
+        g.drawLine(xr1, xrs + (1 * xrd), xr2, xrs + (1 * xrd));
+        g.drawLine(xr1, xrs + (2 * xrd), xr2, xrs + (2 * xrd));
+        g.drawLine(xr1, xrs + (3 * xrd), xr2, xrs + (3 * xrd));
+        g.drawLine(xr1, xrs + (4 * xrd), xr2, xrs + (4 * xrd));
+        g.drawLine(xr1, xrs + (5 * xrd), xr2, xrs + (5 * xrd));
+        g.drawLine(xr1, xrs + (6 * xrd), xr2, xrs + (6 * xrd));
+        g.drawLine(xr1, xrs + (7 * xrd), xr2, xrs + (7 * xrd));
+        g.drawLine(xr1, xrs + (8 * xrd), xr2, xrs + (8 * xrd));
+
         int xh1 = 66;
         int xh2 = 1274;
-        
-        g.setColor(darkGray); 
+
+        g.setColor(darkGray);
 
         //Lange lyse horisontale streger
-        g.drawLine(xh1, xrs +(0*xrd), xh2, xrs +(0*xrd));
-        g.drawLine(xh1, xrs +(1*xrd), xh2, xrs +(1*xrd));
-        g.drawLine(xh1, xrs +(2*xrd), xh2, xrs +(2*xrd));
-        g.drawLine(xh1, xrs +(3*xrd), xh2, xrs +(3*xrd));
-        g.drawLine(xh1, xrs +(4*xrd), xh2, xrs +(4*xrd));
-        g.drawLine(xh1, xrs +(5*xrd), xh2, xrs +(5*xrd));
-        g.drawLine(xh1, xrs +(6*xrd), xh2, xrs +(6*xrd));
-        g.drawLine(xh1, xrs +(7*xrd), xh2, xrs +(7*xrd));
-        g.drawLine(xh1, xrs +(8*xrd), xh2, xrs +(8*xrd));
-        
+        g.drawLine(xh1, xrs + (0 * xrd), xh2, xrs + (0 * xrd));
+        g.drawLine(xh1, xrs + (1 * xrd), xh2, xrs + (1 * xrd));
+        g.drawLine(xh1, xrs + (2 * xrd), xh2, xrs + (2 * xrd));
+        g.drawLine(xh1, xrs + (3 * xrd), xh2, xrs + (3 * xrd));
+        g.drawLine(xh1, xrs + (4 * xrd), xh2, xrs + (4 * xrd));
+        g.drawLine(xh1, xrs + (5 * xrd), xh2, xrs + (5 * xrd));
+        g.drawLine(xh1, xrs + (6 * xrd), xh2, xrs + (6 * xrd));
+        g.drawLine(xh1, xrs + (7 * xrd), xh2, xrs + (7 * xrd));
+        g.drawLine(xh1, xrs + (8 * xrd), xh2, xrs + (8 * xrd));
+
         int xv1 = 75;
         int xv2 = 395;
-        
+
         //Lange lyse vertikale streger
-        g.drawLine(xos +(0*xod), xv1, xos +(0*xod), xv2);
-        g.drawLine(xos +(1*xod), xv1, xos +(1*xod), xv2);
-        g.drawLine(xos +(2*xod), xv1, xos +(2*xod), xv2);
-        g.drawLine(xos +(3*xod), xv1, xos +(3*xod), xv2);
-        g.drawLine(xos +(4*xod), xv1, xos +(4*xod), xv2);
-        g.drawLine(xos +(5*xod), xv1, xos +(5*xod), xv2);
-        g.drawLine(xos +(6*xod), xv1, xos +(6*xod), xv2);
-        g.drawLine(xos +(7*xod), xv1, xos +(7*xod), xv2);
-        g.drawLine(xos +(8*xod), xv1, xos +(8*xod), xv2);
-        
-        
-        
- }
+        g.drawLine(xos + (0 * xod), xv1, xos + (0 * xod), xv2);
+        g.drawLine(xos + (1 * xod), xv1, xos + (1 * xod), xv2);
+        g.drawLine(xos + (2 * xod), xv1, xos + (2 * xod), xv2);
+        g.drawLine(xos + (3 * xod), xv1, xos + (3 * xod), xv2);
+        g.drawLine(xos + (4 * xod), xv1, xos + (4 * xod), xv2);
+        g.drawLine(xos + (5 * xod), xv1, xos + (5 * xod), xv2);
+        g.drawLine(xos + (6 * xod), xv1, xos + (6 * xod), xv2);
+        g.drawLine(xos + (7 * xod), xv1, xos + (7 * xod), xv2);
+        g.drawLine(xos + (8 * xod), xv1, xos + (8 * xod), xv2);
+
+    }
 }

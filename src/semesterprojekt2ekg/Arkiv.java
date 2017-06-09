@@ -1,18 +1,17 @@
 package semesterprojekt2ekg;
 
-
 public class Arkiv {
-    
-    public Arkiv () {
+
+    public Arkiv() {
         //opret forbindelse til databasen
     }
-    
-    public void Download(){
+
+    public void Download() {
         //hent data fra databasen
     }
-    
-    public void upload(){
+
+    public void upload() {
         //gem data i databasen
     }
-    
+
 }

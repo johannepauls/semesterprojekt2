@@ -1,32 +1,28 @@
 package semesterprojekt2ekg;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Arrays;
+
 
 public class Controller {
     //opret objekter
 
-    
     public static void main(String[] args) {
-       
+
         Sensor kom = new Sensor();
+        Thread k = new Thread(kom);
         DataBehandler data = new DataBehandler();
-        
-        
-        
-        kom.setData();
+
+        k.start();
         data.setData(kom.getData());
         data.dataSamler();
-    
-       
+
         //final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         // JFrame objekt oprettes.
         JFrame ramme = new JFrame();
         // JFrame objekt tilføjer Gui.
         ramme.add(new Gui());
         // Set en titel på rammen
-        ramme.setTitle("EKG");        
+        ramme.setTitle("EKG");
         // Gør at programmet lukkes, når der klikkes på den røde knap
         ramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Vindue er maksimeret når programmet køres.
@@ -40,10 +36,6 @@ public class Controller {
         // Visning af rammen med hovedklassen inden i
         ramme.setVisible(true);
 
-    
-        
-        
-        
     }
 
 }
