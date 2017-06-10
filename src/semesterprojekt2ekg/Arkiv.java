@@ -1,17 +1,34 @@
 package semesterprojekt2ekg;
 
-public class Arkiv {
+import java.sql.*;
+import java.util.Arrays;
 
-    public Arkiv() {
-        //opret forbindelse til databasen
+public class Arkiv implements Runnable {
+
+    private Queue ko;
+    private int[] value;
+    private int[] data;
+
+    public Arkiv(Queue q) {
+        ko = q;
+        /*Opret forbindelse til */
     }
 
-    public void Download() {
+    @Override
+    public void run() {
+        for (;;) {
+            if (!ko.isQueueArray()) {
+                value = ko.processQueue();
+                //System.out.println("virker det?" + Arrays.toString(value));
+                /*Indsæt i databasen*/
+            }
+        }
+    }
+
+    public int[] Download() {
         //hent data fra databasen
-    }
 
-    public void upload() {
-        //gem data i databasen
+        /*TEST value - rigtigt: data*/
+        return value;
     }
-
 }

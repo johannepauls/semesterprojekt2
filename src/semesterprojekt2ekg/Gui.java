@@ -7,16 +7,12 @@ public class Gui extends javax.swing.JPanel {
 
     private boolean start = false;
     private boolean EKG = false;
-  
 
-    /**
-     * Creates new form Gui
-     */
     public Gui() {
         initComponents();
-       stopButton.setVisible(false);
-       //Stopknappen vises ikke når programmet åbnes
-       
+        stopButton.setVisible(false);
+        //Stopknappen vises ikke når programmet åbnes
+
     }
 
     @SuppressWarnings("unchecked")
@@ -162,16 +158,16 @@ public class Gui extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        setStart (true);
-       startButton.setVisible(false);
-       stopButton.setVisible(true);
-       
-       //Når startButton er er falsk=ikke vist er stop.Button true=vist
+        setStart(true);
+        startButton.setVisible(false);
+        stopButton.setVisible(true);
+
+        //Når startButton er er falsk=ikke vist er stop.Button true=vist
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void statiskEkgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statiskEkgButtonActionPerformed
-        setEKG (true);
-        
+        setEKG(true);
+
     }//GEN-LAST:event_statiskEkgButtonActionPerformed
 
     private void bpmtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpmtxtActionPerformed
@@ -179,20 +175,40 @@ public class Gui extends javax.swing.JPanel {
     }//GEN-LAST:event_bpmtxtActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-         setStart (false);
-       startButton.setVisible(true);
-       stopButton.setVisible(false);
-       
-       //Når startButton er true=vist og stopButton er false=ikke vist
+        setStart(false);
+        startButton.setVisible(true);
+        stopButton.setVisible(false);
+
+        //Når startButton er true=vist og stopButton er false=ikke vist
     }//GEN-LAST:event_stopButtonActionPerformed
 
     public void setPuls(double puls) {
-        bpmtxt.setText(""+puls);
+        bpmtxt.setText("" + puls);
         //Repaint graf?
     }
 
     public void getInterval() {
         //læser interval brugeren ønsker at tegne statisk graf over
+    }
+
+    public void setStart(boolean value) {
+        start = value;
+        //Vi sætter den bolske værdi start til den værdi der er angivet som parameter
+    }
+
+    public boolean getStart() {
+        return start;
+        //Fortæller om der er trykket på startknap eller ej 
+    }
+
+    public void setEKG(boolean value) {
+        EKG = value;
+        //Vi sætter den bolske værdi EKG til den værdi der er angivet som parameter
+    }
+
+    public boolean getEKG() {
+        return EKG;
+        //Fortæller om der er trykket på EKGknap eller ej 
     }
 
 
@@ -319,24 +335,4 @@ public class Gui extends javax.swing.JPanel {
 
     }
 
-    public void setStart(boolean value) {
-        start = value;
-        //Vi sætter den bolske værdi start til den værdi der er angivet som parameter
-    }
-    
-    public boolean getStart(){
-        return start;
-       //Fortæller om der er trykket på startknap eller ej 
-    }
-    
-    public void setEKG(boolean value) {
-        EKG = value;
-        //Vi sætter den bolske værdi EKG til den værdi der er angivet som parameter
-    }
-    
-    public boolean getEKG() {
-        return EKG;
-       //Fortæller om der er trykket på EKGknap eller ej 
-    }
-    
 }

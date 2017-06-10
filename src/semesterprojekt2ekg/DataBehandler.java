@@ -2,21 +2,26 @@ package semesterprojekt2ekg;
 
 import java.util.*;
 
-public class DataBehandler {
+public class DataBehandler implements Runnable {
 
-    int rawData[];
+    private static Timer timer = new Timer(true);
+    int[] rawData;
     List<Integer> samlet = new ArrayList<Integer>();
     int taeller = 0;
     private double puls;
+    private Arkiv db;
 
     //Sensor forb = new Sensor();
-    DataBehandler() {
-
+    DataBehandler(Arkiv a) {
+        db = a;
     }
 
-    public void setData(int intarray[]) {
-        rawData = intarray;
-
+    /*getData*/
+    public void run() {
+        for (;;) {
+            rawData = db.Download();
+            //System.out.println("virker det?" + Arrays.toString(rawData));
+        }
     }
 
     public void dataSamler() {
@@ -35,8 +40,12 @@ public class DataBehandler {
     }
 
     public void setPuls() {
-        //puls beregner
-
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                //pulsberegner
+            }
+        }, 0, 1000);
     }
 
     public double getPuls() {

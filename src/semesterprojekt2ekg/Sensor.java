@@ -9,9 +9,11 @@ public class Sensor implements Runnable {
     private String result;
     private SerialPort serialPort;
     private int[] intarray;
+    List<int[]> samlet = new ArrayList<int[]>();
     private String port;
     private String inputsub;
     private boolean conn;
+    private Queue ko;
 
     /*
     Konstruktøren Sensor() undersøger om der er en serial port tilsluttet.
@@ -19,7 +21,8 @@ public class Sensor implements Runnable {
     tilsluttet, gives der en mulighed for at vælge. Til sidst åbnes forbindelsen
     til porten.
      */
-    Sensor() {
+    Sensor(Queue q) {
+        ko = q;
         int p = 1;
         // Finder serielport.
         String[] portNames = SerialPortList.getPortNames();
@@ -59,7 +62,14 @@ public class Sensor implements Runnable {
 
         /*vi henter en måling ind for at klippe den sidste bid af fra skilletegnet
         *og sætter det på den første reelle måling*/
-        int last = result.lastIndexOf("");
+        try {
+            if (serialPort.getInputBufferBytesCount() > 0) {
+                result = serialPort.readString();
+            }
+        } catch (SerialPortException ex) {
+            System.out.println("Serial Port Exception: " + ex);
+        }
+        int last = result.lastIndexOf(",");
         if (last > -1 && last < result.length() - 1) {
             rest = result.substring(last + 1);
         }
@@ -81,7 +91,7 @@ public class Sensor implements Runnable {
                     //nuværende string.
 
                     result = rest + serialPort.readString();
-                    System.out.println("0  : " + result);
+                    //System.out.println("0  : " + result);
                     //vi definere den sidste værdi i vores string for senere at kunne
                     //tjekke hvad vores rest er.
                     String check = result.substring(result.length() - 1);
@@ -122,19 +132,15 @@ public class Sensor implements Runnable {
                         intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
 
                     }
-                    System.out.println("1  : " + Arrays.toString(intarray));
+                    //System.out.println("1  : " + Arrays.toString(intarray));
+                    int[] valueArray = {1,2,3,4,5};
+                    ko.addToQueue(valueArray);
                 }
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }
-    }
-
-    public int[] getData() {
-        //hent data fra arduino
-        return intarray;
-
+        }    
     }
 
 }

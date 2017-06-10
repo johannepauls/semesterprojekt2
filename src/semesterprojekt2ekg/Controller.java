@@ -2,19 +2,17 @@ package semesterprojekt2ekg;
 
 import javax.swing.*;
 
-
 public class Controller {
     //opret objekter
 
     public static void main(String[] args) {
-
-        Sensor kom = new Sensor();
+        Queue q = new Queue();
+        SensorTest kom = new SensorTest(q);
         Thread k = new Thread(kom);
-        DataBehandler data = new DataBehandler();
-
-        k.start();
-        data.setData(kom.getData());
-        data.dataSamler();
+        Arkiv database = new Arkiv(q);
+        Thread a = new Thread(database);
+        DataBehandler data = new DataBehandler(database);
+        Thread d = new Thread(data);
 
         //final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         // JFrame objekt oprettes.
@@ -36,6 +34,10 @@ public class Controller {
         // Visning af rammen med hovedklassen inden i
         ramme.setVisible(true);
 
+        k.start();
+        a.start();
+        d.start();
+        //data.dataSamler();
     }
 
 }
