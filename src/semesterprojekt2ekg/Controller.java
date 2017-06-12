@@ -3,21 +3,24 @@ package semesterprojekt2ekg;
 import javax.swing.*;
 
 public class Controller {
+
     //opret objekter
+    // JFrame objekt oprettes.
+    private static JFrame ramme = new JFrame();
+    private static Queue q = new Queue();
+    private static SensorTest kom = new SensorTest(q);
+    private static Thread sensorThread = new Thread(kom);
+    private static Arkiv database = new Arkiv(q);
+    private static Thread arkivThread = new Thread(database);
+    private static DataBehandler data = new DataBehandler(database);
+    private static Graf graf = new Graf(database);
+    private static Gui panel = new Gui(graf);
 
     public static void main(String[] args) {
-        Queue q = new Queue();
-        SensorTest kom = new SensorTest(q);
-        Thread k = new Thread(kom);
-        Arkiv database = new Arkiv(q);
-        Thread a = new Thread(database);
-        DataBehandler data = new DataBehandler(database);
-       
+
         //final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        // JFrame objekt oprettes.
-        JFrame ramme = new JFrame();
         // JFrame objekt tilføjer Gui.
-        ramme.add(new Gui());
+        ramme.add(panel);
         // Set en titel på rammen
         ramme.setTitle("EKG");
         // Gør at programmet lukkes, når der klikkes på den røde knap
@@ -33,9 +36,25 @@ public class Controller {
         // Visning af rammen med hovedklassen inden i
         ramme.setVisible(true);
 
-        k.start();
-        a.start();
+        //sensorThread.start();
+        //arkivThread.start();
         //data.dataSamler();
+        try { 
+            while (true) {
+                /*programmet tester hvorvidt vi har trykket på start*/
+                if (panel.getStart()) {
+                    double puls = data.getPuls();
+
+                    panel.setPuls(puls);
+                    System.out.println("virker det?");
+
+                }
+                Thread.sleep(1000);
+            }
+        } catch (Exception e) {
+            System.out.println("undtagelse: " + e.getMessage());					
+            e.printStackTrace();
+        }
     }
 
 }

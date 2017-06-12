@@ -11,8 +11,8 @@ public class Arkiv implements Runnable {
     private Statement stmt;
     private PreparedStatement stmt2;
     private ResultSet rset;
-    private ArrayList<String> data = new ArrayList<String>();
-    private String result; 
+
+    private String result;
     private int[] intarray;
 
     public Arkiv(Queue q) {
@@ -56,30 +56,26 @@ public class Arkiv implements Runnable {
         }
     }
 
-    public String Download() {
+    public int[] Download() {
         //data.clear();
         try {
             rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id DESC LIMIT 1");
             while (rset.next()) {
                 result = rset.getString(2);
-                
+
                 String[] deltrettet = result.split(",");
                 intarray = new int[deltrettet.length];
-                
+
                 for (int i = 0; i < deltrettet.length; i++) {
 
                     intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
-
-                }
-                data.add(0, rset.getString(2));
-                System.out.println(data.toString());
+                }               
             }
-
         } catch (Exception e) {
             System.out.println("jtest undtagelse: " + e.getMessage());					// udskriv fejlmeddelelse
             e.printStackTrace();
         }
         /*TEST value - rigtigt: data*/
-        return value;
+        return intarray;
     }
 }

@@ -2,14 +2,18 @@ package semesterprojekt2ekg;
 
 import java.awt.*;
 import static java.awt.Color.*;
+import javax.swing.*;
 
 public class Gui extends javax.swing.JPanel {
 
     private boolean start = false;
     private boolean EKG = false;
+    private JFrame helpFrame = null;
+    private Graf graph;
 
-    public Gui() {
+    public Gui(Graf g) {
         initComponents();
+        graph = g;
         stopButton.setVisible(false);
         //Stopknappen vises ikke når programmet åbnes
 
@@ -70,8 +74,9 @@ public class Gui extends javax.swing.JPanel {
 
         bpmtxt.setEditable(false);
         bpmtxt.setBackground(new java.awt.Color(0, 0, 0));
-        bpmtxt.setFont(new java.awt.Font("Century Gothic", 1, 100)); // NOI18N
+        bpmtxt.setFont(new java.awt.Font("Century Gothic", 1, 70)); // NOI18N
         bpmtxt.setForeground(new java.awt.Color(255, 255, 255));
+        bpmtxt.setText("PULS");
         bpmtxt.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         bpmtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,16 +157,16 @@ public class Gui extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        setStart(true);
+        
         startButton.setVisible(false);
         stopButton.setVisible(true);
-
+        setStart(true);
         //Når startButton er er falsk=ikke vist er stop.Button true=vist
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void statiskEkgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statiskEkgButtonActionPerformed
         setEKG(true);
-
+        JOptionPane.showMessageDialog(helpFrame, "Denne del af kode er ikke implementeret endnu");
     }//GEN-LAST:event_statiskEkgButtonActionPerformed
 
     private void bpmtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpmtxtActionPerformed
