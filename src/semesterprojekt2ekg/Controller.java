@@ -12,8 +12,7 @@ public class Controller {
         Arkiv database = new Arkiv(q);
         Thread a = new Thread(database);
         DataBehandler data = new DataBehandler(database);
-        Thread d = new Thread(data);
-
+       
         //final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         // JFrame objekt oprettes.
         JFrame ramme = new JFrame();
@@ -36,7 +35,6 @@ public class Controller {
 
         k.start();
         a.start();
-        d.start();
         //data.dataSamler();
     }
 

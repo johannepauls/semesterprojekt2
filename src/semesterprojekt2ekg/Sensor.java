@@ -8,7 +8,7 @@ public class Sensor implements Runnable {
     private String rest = "";
     private String result;
     private SerialPort serialPort;
-    private int[] intarray;
+    //private int[] intarray;
     List<int[]> samlet = new ArrayList<int[]>();
     private String port;
     private String inputsub;
@@ -122,7 +122,7 @@ public class Sensor implements Runnable {
                             result = result.substring(0, result.length() - 1);
                         }
                     }
-
+                    /*
                     //vi ændrer nu vores string array til et int array
                     String[] deltrettet = result.split(",");
                     intarray = new int[deltrettet.length];
@@ -131,12 +131,10 @@ public class Sensor implements Runnable {
 
                         intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
 
-                    }
-                    //System.out.println("1  : " + Arrays.toString(intarray));
-                    int[] valueArray = {1,2,3,4,5};
-                    ko.addToQueue(valueArray);
+                    }*/
+                    ko.addToQueue(result);
                 }
-                Thread.sleep(1000);
+                
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

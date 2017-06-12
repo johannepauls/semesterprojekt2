@@ -2,12 +2,13 @@ package semesterprojekt2ekg;
 
 import java.util.*;
 
-public class DataBehandler implements Runnable {
+public class DataBehandler {
 
     private static Timer timer = new Timer(true);
-    int[] rawData;
-    List<Integer> samlet = new ArrayList<Integer>();
-    int taeller = 0;
+    private String rawData;
+    private int[] intarray;
+    private List<Integer> samlet = new ArrayList<Integer>();
+    private int taeller = 0;
     private double puls;
     private Arkiv db;
 
@@ -15,17 +16,29 @@ public class DataBehandler implements Runnable {
     DataBehandler(Arkiv a) {
         db = a;
     }
-
+    
     /*getData*/
-    public void run() {
-        for (;;) {
-            rawData = db.Download();
-            //System.out.println("virker det?" + Arrays.toString(rawData));
-        }
+    public void setArray() {
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                rawData = db.Download();
+                //vi ændrer nu vores string array til et int array
+                    String[] deltrettet = rawData.split(",");
+                    intarray = new int[deltrettet.length];
+
+                    for (int i = 0; i < deltrettet.length; i++) {
+
+                        intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
+
+                    }
+                setPuls();
+            }
+        }, 0, 1000);
     }
 
     public void dataSamler() {
-        System.out.println("Samlermani: " + Arrays.toString(rawData));
+       /* System.out.println("Samlermani: " + Arrays.toString(rawData));
         for (int i = 0; i < rawData.length; i++) {
             samlet.add(rawData[i]);
             taeller++;
@@ -36,16 +49,11 @@ public class DataBehandler implements Runnable {
                 System.out.println("Samlet[] er fuld: ");
             }
             System.out.println(rawData[i]);
-        }
+        }*/
     }
 
     public void setPuls() {
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
                 //pulsberegner
-            }
-        }, 0, 1000);
     }
 
     public double getPuls() {

@@ -4,22 +4,22 @@ import java.util.*;
 
 public class Queue {
 
-    private ArrayList<int[]> queueArray = new ArrayList<int[]>();
-    private int[] partArray;
+    private ArrayList<String> queueArray = new ArrayList<String>();
+    private String partString;
 
     /*tilføjer et array med data fra sensoren til en kø
     *kø er en arraylist af int-arrays*/
-    public void addToQueue(int[] valueArray) {
-        queueArray.add(valueArray);
+    public void addToQueue(String value) {
+        queueArray.add(value);
     }
 
     /*henter et array fra køren
     *OBS hvor tager den fra og hvor bliver nye data lagt ind?*/
-    public int[] processQueue() {
+    public String processQueue() {
         if (!isQueueArray()) {
-            partArray = queueArray.get(0);
+            partString = queueArray.get(0);
         }
-        return partArray;
+        return partString;
     }
 
     public boolean isQueueArray() {
