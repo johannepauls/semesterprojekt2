@@ -4,7 +4,6 @@ import java.util.*;
 
 public class DataBehandler {
 
-    private static Timer timer = new Timer(true);
     private String rawData;
     private int[] dataFromDownload;
     private List<Integer> samlet = new ArrayList<Integer>();
@@ -19,6 +18,7 @@ public class DataBehandler {
 
     /*getData*/
     public void getArray() {
+        /*hvor eller hvordan skal denne klasse hente data til pulsberegning?*/
         dataFromDownload = db.Download();
 
     }
@@ -44,7 +44,6 @@ public class DataBehandler {
 
     public double getPuls() {
         //returner den beregnet puls værdi
-        puls = 4;
         return puls;
     }
 

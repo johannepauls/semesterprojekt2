@@ -13,7 +13,7 @@ public class Queue {
         queueArray.add(value);
     }
 
-    /*henter et array fra køren
+    /*henter et array fra køren, hvis køen ikke er tøm
     *OBS hvor tager den fra og hvor bliver nye data lagt ind?*/
     public String processQueue() {
         if (!isQueueArray()) {
@@ -21,7 +21,9 @@ public class Queue {
         }
         return partString;
     }
-
+    
+    /*boolsk værdi der gør det muligt at tjekke om køen er tøm
+    *kaldes fra Arkiv-klassen*/
     public boolean isQueueArray() {
         return queueArray.isEmpty();
     }

@@ -13,7 +13,7 @@ public class Graf extends JPanel {
     public Graf(Arkiv a) {
         db = a;
     }
-
+    
     public void setData() {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -21,7 +21,7 @@ public class Graf extends JPanel {
                 dataFromDownload = db.Download();
                 dataSamlet.add(0, dataFromDownload);
                 
-                dataSamlet.remove(3);
+                dataSamlet.remove(4);
             }
         }, 0, 1000);
     }

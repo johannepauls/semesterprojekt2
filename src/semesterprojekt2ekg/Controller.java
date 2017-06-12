@@ -36,19 +36,22 @@ public class Controller {
         // Visning af rammen med hovedklassen inden i
         ramme.setVisible(true);
 
-        //sensorThread.start();
-        //arkivThread.start();
+        sensorThread.start();
+        arkivThread.start();
         //data.dataSamler();
+        
         try { 
+            /*programmet vil pga. uendelig løkke køre til vi lukker det*/
             while (true) {
                 /*programmet tester hvorvidt vi har trykket på start*/
                 if (panel.getStart()) {
+                    /*vi henter en pulsværdi, der beregnes af databehandleren. Denne puls 'skrives' på GUI'en*/
                     double puls = data.getPuls();
-
                     panel.setPuls(puls);
-                    System.out.println("virker det?");
+                    //System.out.println("virker det?");
 
                 }
+                /*tråden sover et sekund, ellers skabes problemer med at getStart() ikke virker*/
                 Thread.sleep(1000);
             }
         } catch (Exception e) {
