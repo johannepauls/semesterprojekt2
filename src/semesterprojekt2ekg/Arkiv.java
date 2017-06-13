@@ -63,7 +63,7 @@ public class Arkiv implements Runnable {
         }
     }
 
-    public int[] Download() {
+    public synchronized int[] Download() {
         /*vi henter den nederste række i databasen og konventer strengen til et array af int værdier*/
         try {
             rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id DESC LIMIT 1");

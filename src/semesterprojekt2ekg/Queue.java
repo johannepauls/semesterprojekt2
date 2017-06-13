@@ -9,13 +9,13 @@ public class Queue {
 
     /*tilføjer et array med data fra sensoren til en kø
     *kø er en arraylist af int-arrays*/
-    public void addToQueue(String value) {
+    public synchronized void addToQueue(String value) {
         queueArray.add(value);
     }
 
     /*henter et array fra køren, hvis køen ikke er tøm
     *OBS hvor tager den fra og hvor bliver nye data lagt ind?*/
-    public String processQueue() {
+    public synchronized String processQueue() {
         if (!isQueueArray()) {
             partString = queueArray.get(0);
         }
