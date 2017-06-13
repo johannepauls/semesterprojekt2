@@ -21,7 +21,7 @@ public class Graf extends JPanel {
                 dataFromDownload = db.Download();
                 dataSamlet.add(0, dataFromDownload);
                 
-                dataSamlet.remove(4);
+                dataSamlet.remove(5);
             }
         }, 0, 1000);
     }
