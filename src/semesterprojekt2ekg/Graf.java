@@ -19,9 +19,9 @@ public class Graf extends JPanel {
             @Override
             public void run() {
                 dataFromDownload = db.Download();
-                dataSamlet.add(0, dataFromDownload);
+                dataSamlet.add(dataFromDownload);
                 
-                dataSamlet.remove(5);
+                dataSamlet.remove(0);
             }
         }, 0, 1000);
     }
