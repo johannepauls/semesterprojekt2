@@ -8,12 +8,16 @@ public class Sensor implements Runnable {
     private String rest = "";
     private String result;
     private SerialPort serialPort;
-    //private int[] intarray;
+    private int[] intarray;
     List<int[]> samlet = new ArrayList<int[]>();
+    private double[] tab;
+    private int t;
+    private double[] filt;
     private String port;
     private String inputsub;
     private boolean conn;
     private Queue ko;
+    private DataBehandler data;
 
     /*
     Konstruktøren Sensor() undersøger om der er en serial port tilsluttet.
@@ -21,8 +25,9 @@ public class Sensor implements Runnable {
     tilsluttet, gives der en mulighed for at vælge. Til sidst åbnes forbindelsen
     til porten.
      */
-    Sensor(Queue q) {
+    Sensor(Queue q, DataBehandler d) {
         ko = q;
+        data = d;
         int p = 1;
         // Finder serielport.
         String[] portNames = SerialPortList.getPortNames();
@@ -122,17 +127,35 @@ public class Sensor implements Runnable {
                             result = result.substring(0, result.length() - 1);
                         }
                     }
-                    /*
+                    
                     //vi ændrer nu vores string array til et int array
                     String[] deltrettet = result.split(",");
                     intarray = new int[deltrettet.length];
-
+                    filt = new double[250];
+                    
                     for (int i = 0; i < deltrettet.length; i++) {
 
                         intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
-
-                    }*/
-                    ko.addToQueue(result);
+                        double filtValue = data.filter(intarray[i]);
+                        filt[i]=filtValue;
+                    } 
+                    
+                    tab = new double[250];
+                    t=0;
+                    for(t=0;t>250;t++){
+                        if(t>=250){
+                            ko.addToQueue(tab);
+                            tal
+                        }
+                    
+                    
+                    }
+                    
+                    
+                          
+                    
+                    
+                    
                 }
                 
             } catch (Exception ex) {

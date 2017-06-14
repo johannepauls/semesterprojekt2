@@ -5,6 +5,7 @@ import java.sql.*;
 public class Arkiv implements Runnable {
 
     private Queue ko;
+    private DataBehandler data;
     private String value;
     private Connection conn;
     private Statement stmt;
