@@ -76,6 +76,7 @@ public class Arkiv implements Runnable {
                 for (int i = 0; i < deltrettet.length; i++) {
 
                     intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
+                    
                 }               
             }
         } catch (Exception e) {
