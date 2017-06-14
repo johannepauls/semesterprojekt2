@@ -7,21 +7,20 @@ public class Graf extends JPanel {
 
     private Arkiv db;
     private static Timer timer = new Timer(true);
-    private int[] dataFromDownload;
-    private ArrayList<int[]> dataSamlet = new ArrayList<int[]>();
+    private ArrayList<Integer> dataFromDownload;
 
     public Graf(Arkiv a) {
         db = a;
+        setData();
     }
     
-    public void setData() {
+    private void setData() {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                do{
                 dataFromDownload = db.Download();
-                dataSamlet.add(dataFromDownload);
-                
-                dataSamlet.remove(0);
+                }while(dataFromDownload == null);
             }
         }, 0, 1000);
     }

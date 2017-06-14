@@ -5,19 +5,18 @@ import jssc.*;
 
 public class Sensor implements Runnable {
 
-    private String rest = "";
-    private String result;
-    private SerialPort serialPort;
-    private int[] intarray;
-    List<int[]> samlet = new ArrayList<int[]>();
-    private double[] tab;
-    private int t;
-    private double[] filt;
     private String port;
     private String inputsub;
     private boolean conn;
     private Queue ko;
     private DataBehandler data;
+    private String rest = "";
+    private String result;
+    private SerialPort serialPort;
+    List<int[]> samlet = new ArrayList<int[]>();
+    private int[] tab = new int[250];
+    private int[] filt = new int[250];
+    private int t;
 
     /*
     Konstruktøren Sensor() undersøger om der er en serial port tilsluttet.
@@ -130,34 +129,23 @@ public class Sensor implements Runnable {
                     
                     //vi ændrer nu vores string array til et int array
                     String[] deltrettet = result.split(",");
-                    intarray = new int[deltrettet.length];
-                    filt = new double[250];
                     
                     for (int i = 0; i < deltrettet.length; i++) {
-
+                        int[] intarray = new int[250];
                         intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
-                        double filtValue = data.filter(intarray[i]);
+                        int filtValue = (int) (data.filter(intarray[i]));
                         filt[i]=filtValue;
                     } 
                     
-                    tab = new double[250];
-                    t=0;
+                    
                     for(t=0;t>250;t++){
                         if(t>=250){
                             ko.addToQueue(tab);
-                            tal
+                            tab = new int[250];
                         }
-                    
-                    
+                        tab[t] = filt[t];
                     }
-                    
-                    
-                          
-                    
-                    
-                    
-                }
-                
+                }   
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

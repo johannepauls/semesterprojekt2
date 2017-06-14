@@ -4,43 +4,34 @@ import java.util.*;
 
 public class Queue {
 
-    private double[] queueArray = new double[250];
+    private ArrayList<int[]> queueArray = new ArrayList<int[]>();
 
-    private String partString;
+    private int[] partArray;
 
     /*tilføjer et array med data fra sensoren til en kø
     *kø er en arraylist af int-arrays*/
-    public synchronized void addToQueue(double[] filtValues) {
-        queue
-        
-        
+    public synchronized void addToQueue(int[] filtValues) {
+        queueArray.add(filtValues);
+        if (queueArray.size() == 1) {
+            notify();
+        }
     }
 
     /*henter et array fra køren, hvis køen ikke er tøm
     *OBS hvor tager den fra og hvor bliver nye data lagt ind?*/
-    public synchronized String processQueue() {
-        if (!isQueueArray()) {
-            partString = queueArray.get(0);
-            queueArray.remove(0);
+    public synchronized int[] processQueue() {
+        if (queueArray.size() < 1) {
+            try {
+                wait();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
-        return partString;
-    }
+        
+        partArray = queueArray.get(0);
+        
+        queueArray.remove(0);
 
-    public synchronized double[] processFiltQueue() {
-        if (!isFiltQueueArray()) {
-            partArray = filtQueueArray.get(0);
-            filtQueueArray.remove(0);
-        }
         return partArray;
-    }
-
-    /*boolsk værdi der gør det muligt at tjekke om køen er tøm
-    *kaldes fra Arkiv-klassen*/
-    public boolean isQueueArray() {
-        return queueArray.isEmpty();
-    }
-
-    public boolean isFiltQueueArray() {
-        return filtQueueArray.isEmpty();
     }
 }

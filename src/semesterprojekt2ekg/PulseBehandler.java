@@ -3,10 +3,10 @@ package semesterprojekt2ekg;
 public class PulseBehandler {
 
     private double puls;
-    private DataBehandler db;
+    private Arkiv db;
     
-    PulseBehandler(DataBehandler d){
-        db = d; 
+    PulseBehandler(Arkiv a){
+        db = a; 
     }
     
     public void setPuls() {

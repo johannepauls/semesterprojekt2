@@ -1,18 +1,18 @@
 package semesterprojekt2ekg;
 
 import java.sql.*;
+import java.util.*;
 
 public class Arkiv implements Runnable {
 
     private Queue ko;
-    private DataBehandler data;
-    private String value;
+    private int[] value;
     private Connection conn;
     private Statement stmt;
-    private PreparedStatement stmt2;
+    private String s;
     private ResultSet rset;
-    private String result;
-    private int[] intarray;
+    private int result;
+    private ArrayList<Integer> intArray = new ArrayList<Integer>();
 
     /*Konstruktør der opretter forbindelse til sqlite serveren og opretter en tabel
     * som vi gør klar til at sætte ind i*/
@@ -34,56 +34,51 @@ public class Arkiv implements Runnable {
             try {
                 ResultSet test = stmt.executeQuery("SELECT * FROM maaling");
             } catch (Exception e) {
-                stmt.executeUpdate("CREATE TABLE maaling(id Integer PRIMARY KEY AUTOINCREMENT, value VARCHAR(2500), tid TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL)");
+                stmt.executeUpdate("CREATE TABLE maaling(id Integer PRIMARY KEY AUTOINCREMENT, value INT, tid TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL)");
             }
-            stmt2 = conn.prepareStatement("INSERT INTO maaling (value) VALUES (?)");
-           
+
         } catch (Exception e) {
             System.out.println("jtest undtagelse: " + e.getMessage());
             e.printStackTrace();
         }
 
     }
-    
-    
+
     @Override
     public void run() {
+        s = null;
         for (;;) {
-            /*Hvis der er elementer i køen, gemmer vi strengen i databasen*/
-            if (!ko.isQueueArray()) {
-                value = ko.processQueue();
-                try {
-                    stmt2.setString(1, value);
-                    stmt2.executeUpdate();
-
-                } catch (Exception e) {
-                    System.out.println("jtest undtagelse: " + e.getMessage());
-                    e.printStackTrace();
-                }
+            value = ko.processQueue();
+            s = "INSERT INTO maaling (value) ";
+            for (int i = 0; i < 250; i++) {
+                if(i>0) s+=",";
+                
+                s+="("+value[i]+") ";
             }
+            update(s);
         }
     }
 
-    public synchronized int[] Download() {
+    private synchronized void update(String s) {
+        try {
+            stmt.executeUpdate(s);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public synchronized ArrayList<Integer> Download() {
         /*vi henter den nederste række i databasen og konventer strengen til et array af int værdier*/
         try {
-            rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id DESC LIMIT 1");
+            rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id DESC LIMIT 1250");
             while (rset.next()) {
-                result = rset.getString(2);
-
-                String[] deltrettet = result.split(",");
-                intarray = new int[deltrettet.length];
-
-                for (int i = 0; i < deltrettet.length; i++) {
-
-                    intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
-                    
-                }               
+                result = rset.getInt(2);
+                intArray.add(0,result);
             }
         } catch (Exception e) {
             System.out.println("jtest undtagelse: " + e.getMessage());
             e.printStackTrace();
         }
-        return intarray;
+        return intArray;
     }
 }
