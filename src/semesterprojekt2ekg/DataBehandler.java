@@ -37,7 +37,15 @@ public class DataBehandler {
             System.out.println(rawData[i]);
         }*/
     }
-
+    
+    public void filter() {
+        //Konvertering af int-arraylist til double-arraylist.
+        
+        //Implementation af filterkoefficienter.
+        
+        //Foldning af data og filterkoefficienter.
+    }
+    
     public void setPuls() {
         //pulsberegner
     }
@@ -47,8 +55,6 @@ public class DataBehandler {
         return puls;
     }
 
-    public void filter() {
-        //måske noget filter
-    }
+
 
 }
