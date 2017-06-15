@@ -2,20 +2,40 @@ package semesterprojekt2ekg;
 
 import java.util.*;
 
-public class DataBehandler{
+public class DataBehandler {
 
-    private String rawData;
-    private int[] dataFromDownload;
-    private ArrayList<Double> unFilt = new ArrayList<Double>();
-    private int n = 0;
-    private double puls = 0;
-    private int a;
     private Arkiv db;
     private double filtValue;
+    private int[] filtData;
+    private int startTime = 0;
+    private int endTime;
+    private int diffTime;
+    private ArrayList<Double> unFilt = new ArrayList<Double>();
+    private int n = 0;
+    private int puls = 0;
+    private int a;
 
-    //Sensor forb = new Sensor();
-    /*filtre data metode*/
+    DataBehandler(Arkiv database) {
+        db = database;
+        filtData = db.Download();
 
+        for (int i = 0; i < filtData.length; i++) {
+            if (filtData[i] > filtData[i - 1] && filtData[i] < 300) {
+                endTime = (int) System.currentTimeMillis();
+
+                diffTime = endTime - startTime;
+
+                puls = Math.round(60000 / diffTime);
+
+                endTime = startTime;
+            }
+        }
+    }
+
+    public int getPuls() {
+        //returner den beregnet puls værdi
+        return puls;
+    }
 
     public double filter(int unFiltInt) {
 
@@ -29,7 +49,6 @@ public class DataBehandler{
 
         //Foldning af data og filterkoefficienter.
         //i det her tilfælde y(n) = ...h(k) * x(h-k)
-
         for (int k = 0; k < coeff.length; k++) {
             if (n < k) {
                 a = 0;
@@ -38,7 +57,7 @@ public class DataBehandler{
             }
             filtValue = filtValue + (coeff[k] * unFilt.get(n));
         }
-        
+
         n++;
         //Return
         return filtValue;

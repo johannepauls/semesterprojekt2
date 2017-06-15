@@ -8,12 +8,11 @@ public class Controller {
     // JFrame objekt oprettes.
     private static JFrame ramme = new JFrame();
     private static Queue q = new Queue();
-    private static DataBehandler data = new DataBehandler();
-    private static Sensor kom = new Sensor(q,data);
-    private static Thread sensorThread = new Thread(kom);    
     private static Arkiv database = new Arkiv(q);
     private static Thread arkivThread = new Thread(database);
-    private static PulseBehandler pB = new PulseBehandler(database);
+    private static DataBehandler data = new DataBehandler(database);
+    private static Sensor kom = new Sensor(q,data);
+    private static Thread sensorThread = new Thread(kom);    
     private static Graf graf = new Graf(database);
     private static Gui panel = new Gui(graf);
 
@@ -47,7 +46,7 @@ public class Controller {
                 /*programmet tester hvorvidt vi har trykket på start*/
                 if (panel.getStart()) {
                     /*vi henter en pulsværdi, der beregnes af databehandleren. Denne puls 'skrives' på GUI'en*/
-                    double puls = pB.getPuls();
+                    int puls = data.getPuls();
                     panel.setPuls(puls);
                     //System.out.println("virker det?");
 
