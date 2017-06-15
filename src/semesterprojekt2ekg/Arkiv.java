@@ -15,6 +15,7 @@ public class Arkiv implements Runnable {
     private ArrayList<Integer> intArray = new ArrayList<Integer>();
     private int last;
     private int[] download= null;
+    private int count = 0;
 
     /*Konstruktør der opretter forbindelse til sqlite serveren og opretter en tabel
     * som vi gør klar til at sætte ind i*/
@@ -73,9 +74,16 @@ public class Arkiv implements Runnable {
         /*vi henter den nederste række i databasen og konventer strengen til et array af int værdier*/
         try {
             rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id DESC LIMIT 1250");
-            rset.last();
-            last = rset.getRow();
-            rset.beforeFirst();
+            
+            if(count<1250){
+                rset =stmt.executeQuery("SELECT count(*) FROM maaling");
+                if(rset.next()){
+                    count = rset.getInt(1);
+                }
+                return null;
+            }
+            
+            last = 1250;
             download = new int[last];
             for(last--; last>-1; last--){
                 rset.next();

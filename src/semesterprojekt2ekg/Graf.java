@@ -22,8 +22,10 @@ public class Graf extends JPanel {
             @Override
             public void run() {
                 int[] data = db.Download();
+                
                 if(data != null){
                     dataFromDownload = data;
+                    
                 }
             }
         }, 0, 1000);
@@ -31,6 +33,7 @@ public class Graf extends JPanel {
 
     public void tegnGraf(int[] tegnData) {
         grafData = tegnData;
+        
     }
     
     @Override

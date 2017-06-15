@@ -161,6 +161,7 @@ public class Gui extends javax.swing.JPanel {
         startButton.setVisible(false);
         stopButton.setVisible(true);
         setStart(true);
+        
         //Når startButton er er falsk=ikke vist er stop.Button true=vist
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -198,6 +199,10 @@ public class Gui extends javax.swing.JPanel {
     public boolean getStart() {
         return start;
         //Fortæller om der er trykket på startknap eller ej 
+    }
+    
+    public void setGraf(){
+        graph.repaint();
     }
 
     public void setEKG(boolean value) {
@@ -289,7 +294,7 @@ public class Gui extends javax.swing.JPanel {
         g.drawLine(xl1, xrs + (8 * xrd), xl2, xrs + (8 * xrd));
 
         int xr1 = 1275;
-        int xr2 = 1285;
+        int xr2 = 1307;
 
         //Korte mørke streger højre.
         g.drawLine(xr1, xrs + (0 * xrd), xr2, xrs + (0 * xrd));
@@ -303,7 +308,7 @@ public class Gui extends javax.swing.JPanel {
         g.drawLine(xr1, xrs + (8 * xrd), xr2, xrs + (8 * xrd));
 
         int xh1 = 66;
-        int xh2 = 1274;
+        int xh2 = 1296;
 
         g.setColor(darkGray);
 

@@ -48,6 +48,7 @@ public class Controller {
                     /*vi henter en pulsværdi, der beregnes af databehandleren. Denne puls 'skrives' på GUI'en*/
                     int puls = data.getPuls();
                     panel.setPuls(puls);
+                    panel.setGraf();
                     //System.out.println("virker det?");
 
                 }
