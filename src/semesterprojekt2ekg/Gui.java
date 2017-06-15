@@ -336,7 +336,24 @@ public class Gui extends javax.swing.JPanel {
         g.drawLine(xos + (6 * xod), xv1, xos + (6 * xod), xv2);
         g.drawLine(xos + (7 * xod), xv1, xos + (7 * xod), xv2);
         g.drawLine(xos + (8 * xod), xv1, xos + (8 * xod), xv2);
-
+        
+        
+        //int y
+        //x-axis value
+        g.setColor(white);
+        g.drawString("05,00", (0*xos)+(3*14-5), 425);
+        g.drawString("04,50", (1*xos)-(1*14), 425);
+        g.drawString("04,00", (2*xos)-(5*14), 425);
+        g.drawString("03,50", (3*xos)-(9*14), 425);
+        g.drawString("03,00", (4*xos)-(13*14), 425);
+        g.drawString("02,50", (5*xos)-(17*14), 425);
+        g.drawString("02,00", (6*xos)-(21*14-3), 425);
+        g.drawString("01,50", (7*xos)-(26*14-20), 425);
+        g.drawString("01,00", (8*xos)-(27*14+20), 425);
+        g.drawString("00,50", (9*xos)-(31*14+20), 425);
+        g.drawString("00,00", (10*xos)-(35*14), 425);
+        
+        g.drawString("(Tid siden måling i sekunder)", (5*xos)-(17*18-5), 455);
     }
 
 }
