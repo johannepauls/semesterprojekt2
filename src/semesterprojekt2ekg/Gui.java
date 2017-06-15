@@ -239,7 +239,7 @@ public class Gui extends javax.swing.JPanel {
         // Grid  
         //Lyst rektangel
         g.setColor(darkGray);
-        g.drawRect(55, 65, 1232, 340);
+        g.drawRect(55, 65, 1252, 340);
 
         g.setColor(lightGray);
         int yo1 = 65;
