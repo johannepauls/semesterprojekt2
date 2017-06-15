@@ -3,7 +3,7 @@ package semesterprojekt2ekg;
 import java.sql.*;
 import java.util.*;
 
-public class Arkiv implements Runnable {
+public class Arkiv extends Thread {
 
     private Queue ko;
     private int[] value;
@@ -24,7 +24,7 @@ public class Arkiv implements Runnable {
         try {
             Class.forName("org.sqlite.JDBC");
 
-            conn = DriverManager.getConnection("jdbc:sqlite:MyDB.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:semesterprojekt2.db");
 
             stmt = conn.createStatement();
 
@@ -52,7 +52,8 @@ public class Arkiv implements Runnable {
         s = null;
         for (;;) {
             value = ko.processQueue();
-            s = "INSERT INTO maaling (value) ";
+            
+            s = "INSERT INTO maaling (value) VALUES ";
             for (int i = 0; i < 250; i++) {
                 if(i>0) s+=",";
                 
@@ -89,11 +90,12 @@ public class Arkiv implements Runnable {
                 rset.next();
                 download[last]=rset.getInt(2);
             }
-
+            //System.out.println(""+Arrays.toString(download));
         } catch (Exception e) {
             System.out.println("jtest undtagelse: " + e.getMessage());
             e.printStackTrace();
         }
+        
         return download;
     }
 }

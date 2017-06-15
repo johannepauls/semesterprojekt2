@@ -9,10 +9,8 @@ public class Controller {
     private static JFrame ramme = new JFrame();
     private static Queue q = new Queue();
     private static Arkiv database = new Arkiv(q);
-    private static Thread arkivThread = new Thread(database);
     private static DataBehandler data = new DataBehandler(database);
     private static Sensor kom = new Sensor(q,data);
-    private static Thread sensorThread = new Thread(kom);    
     private static Graf graf = new Graf(database);
     private static Gui panel = new Gui(graf);
 
@@ -35,20 +33,21 @@ public class Controller {
         ramme.pack();
         // Visning af rammen med hovedklassen inden i
         ramme.setVisible(true);
-
-        sensorThread.start();
-        arkivThread.start();
-        //data.dataSamler();
+        
+        kom.start();
+        database.start();
         
         try { 
+            data.setPuls();
             /*programmet vil pga. uendelig løkke køre til vi lukker det*/
             while (true) {
                 /*programmet tester hvorvidt vi har trykket på start*/
                 if (panel.getStart()) {
+                    ramme.add(graf);
                     /*vi henter en pulsværdi, der beregnes af databehandleren. Denne puls 'skrives' på GUI'en*/
                     int puls = data.getPuls();
                     panel.setPuls(puls);
-                    panel.setGraf();
+                    panel.repaint();
                     //System.out.println("virker det?");
 
                 }

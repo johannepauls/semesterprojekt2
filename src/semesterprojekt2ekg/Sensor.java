@@ -3,7 +3,7 @@ package semesterprojekt2ekg;
 import java.util.*;
 import jssc.*;
 
-public class Sensor implements Runnable {
+public class Sensor extends Thread {
 
     private String port;
     private String inputsub;
@@ -15,7 +15,7 @@ public class Sensor implements Runnable {
     private SerialPort serialPort;
     List<int[]> samlet = new ArrayList<int[]>();
     private int[] tab = new int[250];
-    private int[] filt = new int[250];
+    private int[] filt;
     private int t;
 
     /*
@@ -59,7 +59,7 @@ public class Sensor implements Runnable {
             serialPort.openPort();//Open serial port
             serialPort.setParams(19200, 8, 1, 0);//Set params.
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-            serialPort.setDTR(true);
+            //serialPort.setDTR(true);
         } catch (SerialPortException spe) {
             System.out.println("Ingen sensor tilsluttet");
         }
@@ -77,10 +77,11 @@ public class Sensor implements Runnable {
         if (last > -1 && last < result.length() - 1) {
             rest = result.substring(last + 1);
         }
+
     }
 
-    @Override
-    public void run(){
+    public void run() {
+
         while (conn == true) {
 
             //return type ændres til hvad end vi gemmer data som 
@@ -95,7 +96,7 @@ public class Sensor implements Runnable {
                     //nuværende string.
 
                     result = rest + serialPort.readString();
-                    //System.out.println("0  : " + result);
+
                     //vi definere den sidste værdi i vores string for senere at kunne
                     //tjekke hvad vores rest er.
                     String check = result.substring(result.length() - 1);
@@ -118,7 +119,8 @@ public class Sensor implements Runnable {
                     //det er maks antal værdier det kan blive nødvendigt at slette
                     //eksempel: ...,1023   (delt)     ,1010... (vi vil have slettet
                     //1023 da det er en rest der bliver tilføjet til næste streng)
-                    for (int i = 0; i < 4; i++) {
+                    if(result.length()>1){
+                    for (int i = 0;i < 4; i++) {
                         if (!result.substring(result.length() - 1).equals(",")) {
                             //hvis IKKE det sidste bogstav i resultatet er ,
                             //hvad skal der ske?
@@ -126,30 +128,55 @@ public class Sensor implements Runnable {
                             result = result.substring(0, result.length() - 1);
                         }
                     }
-                    
+                    }
                     //vi ændrer nu vores string array til et int array
                     String[] deltrettet = result.split(",");
-                    
-                    for (int i = 0; i < deltrettet.length; i++) {
-                        int[] intarray = new int[250];
-                        intarray[i] = Integer.parseInt(deltrettet[i]);  //***OBS: NumberFormatException nogle gange!!!***
-                        int filtValue = (int) (data.filter(intarray[i]));
-                        filt[i]=filtValue;
-                    } 
-                    
-                    
-                    for(t=0;t>250;t++){
-                        if(t>=250){
-                            ko.addToQueue(tab);
-                            tab = new int[250];
+
+                    int[] intarray = new int[deltrettet.length];
+                    filt = new int[intarray.length];
+                    int value;
+                    for (int i = 0; i < intarray.length; i++) {
+                        intarray[i] = -1;
+                        try {
+                            intarray[i] = Integer.parseInt(deltrettet[i]);
+                            if (intarray[i] > 1023) {
+                                intarray[i] = -1;
+                            }
+                        } catch (NumberFormatException ex) {
+                            intarray[i] = -1;
                         }
-                        tab[t] = filt[t];
+                        if (intarray[i] == -1) {
+                            if (i > 0) {
+                                intarray[i] = intarray[i-1];
+                            } else {
+                                intarray[i] = 0;
+                            }
+                        }
+                       
+                        int filtValue = (int) (data.filter(intarray[i]));
+                        filt[i] = filtValue;
                     }
-                }   
+
+                    for (int i = 0; i < filt.length; i++) {
+
+                        if (t >= 250) {
+                            ko.addToQueue(tab);
+
+                            tab = new int[250];
+                            t = 0;
+
+                        } else {
+                            tab[t] = filt[i];
+                            t++;
+                            //System.out.println(""+t);
+                        }
+                    }
+                    sleep(100);
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }    
+        }
     }
 
 }

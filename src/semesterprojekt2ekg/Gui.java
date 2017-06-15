@@ -354,6 +354,10 @@ public class Gui extends javax.swing.JPanel {
         g.drawString("00,00", (10*xos)-(35*14), 425);
         
         g.drawString("(Tid siden måling i sekunder)", (5*xos)-(17*18-5), 455);
+        
+        if(getStart()){
+            graph.tegnGraf(g);
+        }
     }
 
 }
