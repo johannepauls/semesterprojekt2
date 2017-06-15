@@ -13,6 +13,8 @@ public class Arkiv implements Runnable {
     private ResultSet rset;
     private int result;
     private ArrayList<Integer> intArray = new ArrayList<Integer>();
+    private int last;
+    private int[] download= null;
 
     /*Konstruktør der opretter forbindelse til sqlite serveren og opretter en tabel
     * som vi gør klar til at sætte ind i*/
@@ -67,18 +69,23 @@ public class Arkiv implements Runnable {
         }
     }
 
-    public synchronized ArrayList<Integer> Download() {
+    public synchronized int[] Download() {
         /*vi henter den nederste række i databasen og konventer strengen til et array af int værdier*/
         try {
             rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id DESC LIMIT 1250");
-            while (rset.next()) {
-                result = rset.getInt(2);
-                intArray.add(0,result);
+            rset.last();
+            last = rset.getRow();
+            rset.beforeFirst();
+            download = new int[last];
+            for(last--; last>-1; last--){
+                rset.next();
+                download[last]=rset.getInt(2);
             }
+
         } catch (Exception e) {
             System.out.println("jtest undtagelse: " + e.getMessage());
             e.printStackTrace();
         }
-        return intArray;
+        return download;
     }
 }
