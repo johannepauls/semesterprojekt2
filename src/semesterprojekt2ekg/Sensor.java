@@ -57,7 +57,7 @@ public class Sensor implements Runnable {
 
         try {
             serialPort.openPort();//Open serial port
-            serialPort.setParams(9600, 8, 1, 0);//Set params.
+            serialPort.setParams(19200, 8, 1, 0);//Set params.
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
             serialPort.setDTR(true);
         } catch (SerialPortException spe) {
