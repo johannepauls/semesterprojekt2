@@ -5,6 +5,7 @@ import java.util.*;
 public class DataBehandler {
 
     private Arkiv db;
+    private static Timer timer = new Timer(true);
     private double filtValue;
     private int[] filtData;
     private int startTime = 0;
@@ -17,22 +18,34 @@ public class DataBehandler {
 
     DataBehandler(Arkiv database) {
         db = database;
-        filtData = db.Download();
+    }
 
-        for (int i = 0; i < filtData.length; i++) {
-            if (filtData[i] > filtData[i - 1] && filtData[i] < 300) {
-                endTime = (int) System.currentTimeMillis();
+    public void setPuls() {
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                int[] data = db.Download();
+                if (data != null) {
+                    filtData = data;
+                }
+                for (int i = 0; i < filtData.length; i++) {
+                    if (filtData[i] > filtData[i - 1] && filtData[i] < 300) {
+                        endTime = (int) System.currentTimeMillis();
 
-                diffTime = endTime - startTime;
+                        diffTime = endTime - startTime;
 
-                puls = Math.round(60000 / diffTime);
+                        puls = Math.round(60000 / diffTime);
 
-                endTime = startTime;
+                        endTime = startTime;
+                    }
+                }
+
             }
-        }
+        }, 0, 1000);
     }
 
     public int getPuls() {
+        /*giver muligvis fejl - sikring af timer og puls*/
         //returner den beregnet puls værdi
         return puls;
     }
