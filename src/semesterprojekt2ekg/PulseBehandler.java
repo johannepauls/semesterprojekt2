@@ -6,7 +6,7 @@ public class PulseBehandler {
 
     private int puls;
     private Arkiv db;
-    private ArrayList<Integer> filtData;
+    private int[] filtData;
     private int startTime = 0;
     private int endTime;
     private int diffTime;
@@ -16,8 +16,8 @@ public class PulseBehandler {
         db = database; 
         filtData = database.Download();
         
-        for(int i = 0; i < filtData.size(); i++){
-            if(filtData.get(i) > filtData.get(i-1) && filtData.get(i) < 300){
+        for(int i = 0; i < filtData.length; i++){
+            if(filtData[i] > filtData[i-1] && filtData[i] < 300){
                 endTime = (int) System.currentTimeMillis();
                 
                 diffTime = endTime - startTime;
