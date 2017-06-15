@@ -10,7 +10,7 @@ public class Controller {
     private static Queue q = new Queue();
     private static Arkiv database = new Arkiv(q);
     private static DataBehandler data = new DataBehandler(database);
-    private static Sensor kom = new Sensor(q,data);
+    private static Sensor kom = new Sensor(q, data);
     private static Graf graf = new Graf(database);
     private static Gui panel = new Gui(graf);
 
@@ -33,11 +33,10 @@ public class Controller {
         ramme.pack();
         // Visning af rammen med hovedklassen inden i
         ramme.setVisible(true);
-        
-        kom.start();
-        database.start();
-        
-        try { 
+
+        try {
+            kom.start();
+            database.start();
             data.setPuls();
             /*programmet vil pga. uendelig løkke køre til vi lukker det*/
             while (true) {
@@ -55,7 +54,7 @@ public class Controller {
                 Thread.sleep(1000);
             }
         } catch (Exception e) {
-            System.out.println("undtagelse: " + e.getMessage());					
+            System.out.println("undtagelse: " + e.getMessage());
             e.printStackTrace();
         }
     }
