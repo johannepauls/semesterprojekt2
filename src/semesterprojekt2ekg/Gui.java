@@ -182,7 +182,7 @@ public class Gui extends javax.swing.JPanel {
         //Når startButton er true=vist og stopButton er false=ikke vist
     }//GEN-LAST:event_stopButtonActionPerformed
 
-    public void setPuls(int puls) {
+    public void setPuls(double puls) {
         bpmtxt.setText("" + puls);
         //Repaint graf?
     }
