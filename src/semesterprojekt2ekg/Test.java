@@ -30,7 +30,7 @@ public class Test {
         try {
             Class.forName("org.sqlite.JDBC");
 
-            conn = DriverManager.getConnection("jdbc:sqlite:MyDB.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:semesterprojekt2.db");
 
             stmt = conn.createStatement();
 

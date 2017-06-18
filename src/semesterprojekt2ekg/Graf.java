@@ -54,7 +54,7 @@ public class Graf extends JPanel {
             if(y<0) y=0;
             //System.out.println(y);
             // Tegning af værdierne i grafen (kun heltal)
-            g2.setColor(blue);
+            g2.setColor(green);
 
             //Hvis der kun er en måling tegnes ét rektangel.
             if (i > 0 && grafData.length == 1) {

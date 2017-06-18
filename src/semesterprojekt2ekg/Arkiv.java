@@ -34,17 +34,21 @@ public class Arkiv extends Thread {
             *et id, der er primær nøgle og indstilles automatisk; 
             *en værdi, der består af en lang string;
             *en tidsangivelse, der indstilles automatisk*/
+            
+            System.out.println("forbindelse til databasen oprettet");
+            
             try {
                 ResultSet test = stmt.executeQuery("SELECT * FROM maaling");
             } catch (Exception e) {
                 stmt.executeUpdate("CREATE TABLE maaling(id Integer PRIMARY KEY AUTOINCREMENT, value INT, tid TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL)");
+
             }
 
         } catch (Exception e) {
             System.out.println("jtest undtagelse: " + e.getMessage());
             e.printStackTrace();
         }
-
+      
     }
 
     @Override
@@ -52,20 +56,22 @@ public class Arkiv extends Thread {
         s = null;
         for (;;) {
             value = ko.processQueue();
-            
             s = "INSERT INTO maaling (value) VALUES ";
             for (int i = 0; i < 250; i++) {
                 if(i>0) s+=",";
                 
                 s+="("+value[i]+") ";
             }
+            
             update(s);
+            
         }
     }
 
     private synchronized void update(String s) {
         try {
             stmt.executeUpdate(s);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -90,7 +96,8 @@ public class Arkiv extends Thread {
                 rset.next();
                 download[last]=rset.getInt(2);
             }
-            //System.out.println(""+Arrays.toString(download));
+
+            
         } catch (Exception e) {
             System.out.println("jtest undtagelse: " + e.getMessage());
             e.printStackTrace();

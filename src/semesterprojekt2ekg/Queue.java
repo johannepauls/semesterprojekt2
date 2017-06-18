@@ -12,7 +12,6 @@ public class Queue {
     *kø er en arraylist af int-arrays*/
     public synchronized void addToQueue(int[] filtValues) {
         queueArray.add(filtValues);
-        
         if (queueArray.size() == 1) {
             notify();
         }
@@ -30,9 +29,8 @@ public class Queue {
         }
         
         partArray = queueArray.get(0);
-        
         queueArray.remove(0);
- 
+        
         return partArray;
     }
 }

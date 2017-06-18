@@ -32,11 +32,11 @@ public class DataBehandler {
                 }
 
                 for (int i = 3; i < filtData.length; i++) {
-                    if (filtData[i] < filtData[i - 1] && filtData[i - 2] > filtData[i - 3] && filtData[i] > 300) {
+                    if (filtData[i] <= filtData[i - 1] && filtData[i - 2] > filtData[i - 3] && filtData[i] >= 300) {
                         endTime = i;
 
                         diffTime = (endTime - startTime) * 4;
-                        if (diffTime > (60 * 4) && startTime != -1) {
+                        if (diffTime >= (40 * 4) && startTime != -1) {
                             puls = Math.round(60000 / diffTime);
                             //System.out.println("start: " + startTime + " stop: " + endTime + " puls: " + puls);
                         }
