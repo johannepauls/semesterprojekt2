@@ -40,7 +40,7 @@ public class Graf extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        int origoX = 55;
+        int origoX = 56;
         int origoY = 405;
         int x = origoX; //Første x-koordinat, stiger gennem iterationer.
         //Første y-koordinat, stiger gennem iterationer.
@@ -61,7 +61,7 @@ public class Graf extends JPanel {
                 g2.drawRect(x, y, 2, 2);
             }
             //Så der ikke tegnes ude for det hvide rektangel.
-           if (i == 1251 || y > 395 || y < 64) {
+           if (i == 1252 || y > 395 || y < 64) {
                 break;
             }
             //Hvis der er mere end en måling tegnes streger.
