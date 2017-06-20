@@ -13,7 +13,6 @@ public class Sensor extends Thread {
     private String rest = "";
     private String result;
     private SerialPort serialPort;
-    List<int[]> samlet = new ArrayList<int[]>();
     private int[] tab = new int[250];
     private int[] filt;
     private int t;
@@ -59,28 +58,29 @@ public class Sensor extends Thread {
             serialPort.openPort();//Open serial port
             serialPort.setParams(19200, 8, 1, 0);//Set params.
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-            //serialPort.setDTR(true);
-        } catch (SerialPortException spe) {
+            serialPort.readString();
+        } catch (Exception ex) {
             System.out.println("Ingen sensor tilsluttet");
         }
 
         /*vi henter en måling ind for at klippe den sidste bid af fra skilletegnet
         *og sætter det på den første reelle måling*/
+    }
+
+    public void run() {
         try {
-            if (serialPort.getInputBufferBytesCount() > 0) {
-                result = serialPort.readString();
+            while (serialPort.getInputBufferBytesCount() <= 0) {
+                sleep(100);
+
             }
-        } catch (SerialPortException ex) {
-            System.out.println("Serial Port Exception: " + ex);
+            result = serialPort.readString();
+        } catch (Exception ex) {
+            System.out.println("Exception i Sensor: " + ex);
         }
         int last = result.lastIndexOf(",");
         if (last > -1 && last < result.length() - 1) {
             rest = result.substring(last + 1);
         }
-
-    }
-
-    public void run() {
 
         while (conn == true) {
 
@@ -96,7 +96,9 @@ public class Sensor extends Thread {
                     //nuværende string.
 
                     result = rest + serialPort.readString();
-
+                    //System.out.println(result);
+                    
+                    
                     //vi definere den sidste værdi i vores string for senere at kunne
                     //tjekke hvad vores rest er.
                     String check = result.substring(result.length() - 1);
@@ -113,23 +115,26 @@ public class Sensor extends Thread {
                     } else {
                         rest = delttest[delttest.length - 1];
                     }
-
+                    if (result.length() > 1) {
+                        result = result.substring(0, result.lastIndexOf(","));
+                    }
                     //vi sletter en eventuel rest fra den nuværende streng, da den bliver
                     //tilføjet til starten af næste streng. Vi kører løkken 4 gange, da
                     //det er maks antal værdier det kan blive nødvendigt at slette
                     //eksempel: ...,1023   (delt)     ,1010... (vi vil have slettet
                     //1023 da det er en rest der bliver tilføjet til næste streng)
-                    if(result.length()>1){
-                    for (int i = 0;i < 4; i++) {
-                        if (!result.substring(result.length() - 1).equals(",")) {
-                            //hvis IKKE det sidste bogstav i resultatet er ,
-                            //hvad skal der ske?
-                            //så er resultatet = result - 1 tegn.
-                            result = result.substring(0, result.length() - 1);
+                    /* if (result.length() > 1) {
+                        for (int i = 0; i < 4; i++) {
+                            if (!result.substring(result.length() - 1).equals(",")) {
+                                //hvis IKKE det sidste bogstav i resultatet er ,
+                                //hvad skal der ske?
+                                //så er resultatet = result - 1 tegn.
+                                result = result.substring(0, result.length() - 1);
+                            }
                         }
-                    }
-                    }
+                    }*/
                     //vi ændrer nu vores string array til et int array
+
                     String[] deltrettet = result.split(",");
 
                     int[] intarray = new int[deltrettet.length];
@@ -147,13 +152,14 @@ public class Sensor extends Thread {
                         }
                         if (intarray[i] == -1) {
                             if (i > 0) {
-                                intarray[i] = intarray[i-1];
+                                intarray[i] = intarray[i - 1];
                             } else {
                                 intarray[i] = 0;
                             }
                         }
-                       
+
                         int filtValue = (int) (data.filter(intarray[i]));
+                        //System.out.println(intarray[i]);
                         filt[i] = filtValue;
                     }
 
@@ -161,16 +167,16 @@ public class Sensor extends Thread {
 
                         if (t >= 250) {
                             ko.addToQueue(tab);
-
                             tab = new int[250];
                             t = 0;
 
                         } else {
                             tab[t] = filt[i];
                             t++;
-                            //System.out.println(""+t);
+                            
                         }
                     }
+
                     sleep(100);
                 }
             } catch (Exception ex) {
