@@ -46,7 +46,7 @@ public class Test {
                 stmt.executeUpdate("CREATE TABLE maaling(id Integer PRIMARY KEY AUTOINCREMENT, value INT, tid TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL)");
             }
             
-            rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id ");
+            rset = stmt.executeQuery("SELECT * FROM maaling ORDER BY id DESC LIMIT 250 ");
             
             while(rset.next()){
                 System.out.print(rset.getInt(2)+" ");
