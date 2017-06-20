@@ -77,7 +77,7 @@ public class DataBehandler {
         }
         for (k = 0; k < coeff.length; k++) {
 
-            filtValue = filtValue + (coeff[k] * unFilt.get(a));
+            filtValue = ((filtValue + (coeff[k] * unFilt.get(a)))/1.5)+30;
             if (a > 0) {
                 a--;
             } else {
